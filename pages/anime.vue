@@ -1,73 +1,48 @@
 <template>
-  <div class="dark:bg-gray-800">
-    <h1 class="text-center text-4xl font-bold select-none p-8">Watching</h1>
-    <div class="container mx-auto grid sm:grid-cols-1 md:grid-cols-4 grid-flow-row gap-6 pb-8">
-      <anime-card v-for="show of state.anime.currShows" :key="show.title" :title="show.title" :desc="show.desc" :imgurl="show.imgUrl"></anime-card>
+  <div class="dark:bg-gray-800 mt-6">
+    <h1 class="text-center text-4xl font-bold select-none p-8" v-t="'Watching'"></h1>
+    <div class="container mx-auto flex flex-wrap items-center justify-center pb-8">
+      <anime-card v-for="show of data.currShows" :key="show.title" :title="show.title" :desc="show.desc" :imgurl="show.imgUrl"></anime-card>
     </div>
-    <h1 class="text-center text-4xl font-bold select-none p-8">Watched</h1>
-    <div class="container mx-auto grid sm:grid-cols-1 md:grid-cols-4 gap-6 pb-32">
-      <anime-card v-for="show of state.anime.prevShows" :key="show.title" :title="show.title" :desc="show.desc" :imgurl="show.imgUrl"></anime-card>
+    <h1 class="text-center text-4xl font-bold select-none p-8" v-t="'Watched'"></h1>
+    <div class="container mx-auto flex flex-wrap items-center justify-center pb-32">
+      <anime-card v-for="show of data.prevShows" :key="show.title" :title="show.title" :desc="show.desc" :imgurl="show.imgUrl"></anime-card>
     </div>
   </div>
 </template>
 
-<script>
-    import AnimeCard from "../components/animeCard";
-    import {reactive} from "@vue/composition-api";
-    export default {
+<script lang="ts">
+    import AnimeCard from "../components/animeCard.vue";
+    import AniData from "../assets/anime.yaml"
+    import {defineComponent, ref} from "@vue/composition-api";
+    export default defineComponent({
         setup() {
-          const state = reactive({
-            anime: {
-              currShows: [
-                {
-                  title: "Laid-Back Camp",
-                  imgUrl: "https://img1.ak.crunchyroll.com/i/spire4/5ac5fff410cb66c57ce0d2ea2617d08d1515076527_full.jpg",
-                  desc: "ABC...easy as 123"
-                },
-                {
-                  title: "Laid-Back Camp",
-                  imgUrl: "https://img1.ak.crunchyroll.com/i/spire4/5ac5fff410cb66c57ce0d2ea2617d08d1515076527_full.jpg",
-                  desc: "ABC...easy as 123"
-                },
-                {
-                  title: "Laid-Back Camp",
-                  imgUrl: "https://img1.ak.crunchyroll.com/i/spire4/5ac5fff410cb66c57ce0d2ea2617d08d1515076527_full.jpg",
-                  desc: "ABC...easy as 123"
-                },
-                {
-                  title: "Laid-Back Camp",
-                  imgUrl: "https://img1.ak.crunchyroll.com/i/spire4/5ac5fff410cb66c57ce0d2ea2617d08d1515076527_full.jpg",
-                  desc: "ABC...easy as 123"
-                },
-                {
-                  title: "Laid-Back Camp",
-                  imgUrl: "https://img1.ak.crunchyroll.com/i/spire4/5ac5fff410cb66c57ce0d2ea2617d08d1515076527_full.jpg",
-                  desc: "ABC...easy as 123"
-                },
-                {
-                  title: "Laid-Back Camp",
-                  imgUrl: "https://img1.ak.crunchyroll.com/i/spire4/5ac5fff410cb66c57ce0d2ea2617d08d1515076527_full.jpg",
-                  desc: "ABC...easy as 123"
-                },
-              ],
-              prevShows: [
-                {
-                  title: "Laid-Back Camp",
-                  imgUrl: "https://img1.ak.crunchyroll.com/i/spire4/5ac5fff410cb66c57ce0d2ea2617d08d1515076527_full.jpg",
-                  desc: "ABC...easy as 123"
-                }
-              ]
-            }
-          })
+          const data = ref(AniData)
           return {
-            state
+            data
           }
         },
         name: "anime",
         components: {AnimeCard}
-    }
+    })
 </script>
 
-<style scoped>
+<i18n>
+{
+  "en": {
+    "Watching": "Watching",
+    "Watched": "Watched"
+  },
+  "ja": {
+    "Watching": "見てるアニメ",
+    "Watched": "見たアニメ"
+  }
+}
+</i18n>
 
+<style scoped>
+.grid {
+  justify-items: center;
+  align-items: center;
+}
 </style>

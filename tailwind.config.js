@@ -8,7 +8,7 @@ module.exports = {
   theme: {},
   variants: {},
   plugins: [
-    require("tailwindcss-dark-mode")()
+    require("tailwindcss-dark-mode")(),
   ],
   purge: {
     // Learn more on https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css

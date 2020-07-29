@@ -5,17 +5,25 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nuxt"
+    "dev": "nuxt",
+    "build": "nuxt build"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/free-brands-svg-icons": "^5.14.0",
+    "@fortawesome/free-solid-svg-icons": "^5.14.0",
+    "@nuxt/types": "^2.14.0",
     "@nuxt/typescript-build": "^2.0.0",
+    "@nuxtjs/fontawesome": "^1.1.2",
     "@nuxtjs/tailwindcss": "^2.1.0",
+    "@types/showdown": "^1.9.3",
     "@vue/composition-api": "^1.0.0-beta.6",
     "nuxt": "^2.13.3",
     "nuxt-i18n": "^6.13.1",
+    "showdown": "^1.9.1",
     "tailwindcss-dark-mode": "^1.1.5",
-    "three": "^0.118.3"
+    "three": "^0.118.3",
+    "yaml-loader": "^0.6.0"
   }
 }
