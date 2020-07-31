@@ -1,5 +1,5 @@
 <template>
-  <canvas :width="$props.width" :height="$props.height" ref="renderer">
+  <canvas class="" :width="$props.width" :height="$props.height" ref="renderer">
 
   </canvas>
 </template>
@@ -36,14 +36,15 @@
         let container = this.$refs["renderer"] as HTMLCanvasElement
         this.state.scene = new THREE.Scene()
 
-        this.state.camera = new THREE.PerspectiveCamera(70, container.clientHeight/container.clientWidth)
+        //2nd value is the aspect ratio...
+        this.state.camera = new THREE.PerspectiveCamera(70, 1/1)
         this.state.camera.position.z = 30;
         this.state.camera.position.y = 10;
 
         this.state.renderer = new THREE.WebGLRenderer({
           alpha: true,
           canvas: container,
-          antialias: true
+          antialias: true,
         })
 
         // var controls = new OrbitControls( camera, renderer.domElement );

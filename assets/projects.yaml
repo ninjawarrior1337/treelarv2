@@ -1,6 +1,8 @@
 - title: Hanamaru
   description: >
    A Go-based **discord bot** with a bunch of Japanese-learning utilities and a spoonful of useless image editing features.
+   If you're wondering if thats the official logo: Yes and no. I designed it in 10 seconds (obviously) and I think it could be done better but I have nothing
+   better so this is it for now.
   img: /hanamarugo.png
   links:
     - go.dev=https://pkg.go.dev/github.com/ninjawarrior1337/hanamaru-go
@@ -22,7 +24,9 @@
     - go.dev=https://pkg.go.dev/github.com/ninjawarrior1337/lovelive-hd-ur-go?tab=overview
     - GitHub=https://github.com/ninjawarrior1337/lovelive-hd-ur-go
 - title: llwikiaapi
-  description: An API for the Love Live Wikia Page. This was so that I could look at lyrics and listen to songs and not get judged at school...
+  description: >
+    An API for the Love Live Wikia Page. This was so that I could look at lyrics and listen to songs and not get judged at school...
+    In hindsight though people would probably judge me for lookin at a wall of text vs a nice looking webpage but meh, I don't care about _judgement_ from reading text.
   links:
     - API=https://llwikia.treelar.cf
 

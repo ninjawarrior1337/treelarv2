@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-screen flex items-center justify-center">
-      <button class="px-4 py-2 bg-blue-500 text-4xl border-b-8 rounded-lg border-blue-700">I don't know what I should put here</button>
+      <h1 class="text-5xl">Congrats, you've found the <span style="color: #e6d617">Mitaiken Horizon (未体験 Horizon)</span></h1>
   </div>
 </template>
 

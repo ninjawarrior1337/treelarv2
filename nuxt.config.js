@@ -2,7 +2,8 @@ export default {
   head: {
     title: "Treelar",
     meta: [
-      {charset: "utf-8"},
+      { charset: "utf-8"},
+      { name: 'description', content: 'I want better seo lol.'},
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'theme-color', content: '#3399ff' },
       { name: 'og-name', content: "Treelar" },
@@ -54,9 +55,19 @@ export default {
     [
       "nuxt-i18n",
       {
-        locales: ["en", "ja"],
+        locales: [
+          {
+            code: "en",
+            iso: "en-US"
+          },
+          {
+            code: "ja",
+            iso: "ja-JP"
+          }
+        ],
         defaultLocale: "en",
-        vueI18nLoader: true
+        vueI18nLoader: true,
+        seo: true
       }
     ]
   ],
@@ -64,6 +75,7 @@ export default {
     "@/plugins/composition-api",
   ],
   server: {
+    host: "0.0.0.0",
     port: 1234
   }
 }

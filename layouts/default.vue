@@ -1,13 +1,18 @@
 <template>
-  <div class="overflow-x-hidden text-white bg-gray-900">
-    <nav class="fixed z-10 w-full flex p-8 lg:p-5 bg-gray-900 border-b-4 border-blue-500 mb-8">
+  <div>
+    <confetti v-if="state.confettiActive" :color="state.confettiColor"></confetti>
+    <div class="overflow-x-hidden text-white bg-gray-900">
+    <div class="fixed z-10 w-full flex items-center p-3 lg:p-5 bg-gray-900 border-b-4 border-blue-500 mb-8">
       <div class="w-full flex-grow">
-        <nuxt-link :to="localePath('index')" class="text-white lg:text-lg text-3xl mr-4" v-t="'Home'"></nuxt-link>
-        <nuxt-link :to="localePath('projects')" class="text-white lg:text-lg text-3xl mr-4" v-t="'Projects'"></nuxt-link>
-        <nuxt-link :to="localePath('anime')" class="text-white lg:text-lg text-3xl mr-4" v-t="'Anime'"></nuxt-link>
+        <nuxt-link :to="localePath('index')" class="text-white lg:text-lg text-xl mr-4" v-t="'Home'"></nuxt-link>
+        <nuxt-link :to="localePath('projects')" class="text-white lg:text-lg text-xl mr-4" v-t="'Projects'"></nuxt-link>
+        <nuxt-link :to="localePath('anime')" class="text-white lg:text-lg text-xl mr-4" v-t="'Anime'"></nuxt-link>
       </div>
-    </nav>
-    <div class="lg:pt-8 pt-24">
+      <div>
+        <button v-if="state.confettiActive" @click="toggleConfetti">Turn Off Confetti</button>
+      </div>
+    </div>
+    <div class="lg:pt-8 pt-12">
       <nuxt v-if="!state.eggActive"></nuxt>
       <egg v-else></egg>
     </div>
@@ -24,20 +29,23 @@
         <span style="color: #3399ff">Treelar</span>
       </div>
       <div class="mt-2">
-        <a class="mx-2" href="https://twitter.com/TYNROH" target="_blank" rel="noopener"><fa :icon="['fab', 'twitter']"></fa></a>
-        <a class="mx-2" href="https://github.com/ninjawarrior1337" target="_blank" rel="noopener"><fa :icon="['fab', 'github']"></fa></a>
-        <fa class="mx-2" :icon="['fab', 'discord']"></fa>
+        <a class="mx-2" href="https://twitter.com/TYNROH" target="_blank" rel="noopener" title="Twitter"><fa :icon="['fab', 'twitter']"></fa></a>
+        <a class="mx-2" href="https://github.com/ninjawarrior1337" target="_blank" rel="noopener" title="Github"><fa :icon="['fab', 'github']"></fa></a>
+        <!-- <fa class="mx-2" :icon="['fab', 'discord']"></fa> -->
       </div>
     </footer>
-    <button ref="topBtn" @click="scrollToTop" v-t="'Back to Top'" class="bg-blue-500 hover:bg-blue-400 transform translate-x-64 transition-all duration-200 ease-in-out p-4 m-8 fixed bottom-0 right-0 rounded-full outline-none">
+    <button ref="topBtn" @click="scrollToTop" v-t="'Back to Top'" class="text-black bg-blue-500 hover:bg-blue-600 transform translate-x-64 transition-all duration-200 ease-in-out p-4 m-8 fixed bottom-0 right-0 rounded-full outline-none">
         
     </button>
+  </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive } from "@vue/composition-api";
 import egg from "../components/egg.vue"
+import confetti from "../components/confetti.vue"
+import LoveLiveUtils from "../assets/lovelive"
 
 let eggCheckList = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a", "Enter"]
 let eggList: String[] = []
@@ -45,14 +53,17 @@ let eggList: String[] = []
 export default defineComponent({
   setup() {
     const state = reactive({
-      eggActive: false
+      eggActive: false,
+      confettiActive: false,
+      confettiColor: 0x3399ff
     })
     return {
       state
     }
   },
   components: {
-    egg
+    egg,
+    confetti
   },
   methods: {
     scrollToTop() {
@@ -60,6 +71,9 @@ export default defineComponent({
         top: 0,
         behavior: "smooth"
       })
+    },
+    toggleConfetti() {
+      this.state.confettiActive = !this.state.confettiActive
     }
   },
   mounted() {
@@ -84,11 +98,17 @@ export default defineComponent({
         eggList.splice(0, 1)
       }
     }
+    //Setup LoveLiveConfetti
+    var birthdayIdol = LoveLiveUtils.getBirthdayIdol()
+    if(birthdayIdol != null) {
+      this.state.confettiActive = true
+      this.state.confettiColor = parseInt(birthdayIdol.color.substring(1), 16)
+    }
   },
   destroyed() {
     window.onscroll = () => {}
     document.onkeydown = (e) => {}
-  }
+  },
 })
 </script>
 
@@ -97,11 +117,13 @@ export default defineComponent({
   "en": {
     "Home": "Home",
     "Anime": "Anime",
+    "Projects": "Projects",
     "Back to Top": "Back to Top"
   },
   "ja": {
     "Home": "ホーム",
     "Anime": "アニメ",
+    "Projects": "プロジェクト",
     "Back to Top": "トップに"
   }
 }

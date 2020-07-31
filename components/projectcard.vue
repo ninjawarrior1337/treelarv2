@@ -6,7 +6,7 @@
             <p class="text-2xl" v-html="descriptionMd"></p>
         </div>
         <div class="flex-grow"></div>
-        <img :src="$props.img" class="w-32 object-contain" v-if="$props.img">
+        <img :src="$props.img" class="w-32 h-full object-contain" :alt="$props.title+' logo'" v-if="$props.img">
       </div>
       <div class="flex items-center justify-end h-full mt-4 border-t-4 border-blue-500" v-if="links">
         <a

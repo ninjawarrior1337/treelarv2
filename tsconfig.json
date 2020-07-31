@@ -26,7 +26,7 @@
       "@types/node",
       "@nuxt/types",
       "nuxt-i18n",
-      "@types/showdown"
+      "@types/showdown",
     ]
   },
   "include": [
