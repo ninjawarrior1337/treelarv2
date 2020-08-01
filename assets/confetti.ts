@@ -13,7 +13,7 @@ class Particle extends PIXI.Sprite {
         super(PIXI.Texture.WHITE)
         this.tint = color;
         this.width = 4;
-        this.height = (Math.random()*10)+5;
+        this.height = (Math.random()*15)+5;
         this.velocity = vi;
         this.acceleration = ai;
         this.position.set(pi.x, pi.y)

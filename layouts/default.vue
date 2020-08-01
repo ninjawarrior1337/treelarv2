@@ -9,7 +9,7 @@
         <nuxt-link :to="localePath('anime')" class="text-white lg:text-lg text-xl mr-4" v-t="'Anime'"></nuxt-link>
       </div>
       <div>
-        <button v-if="state.confettiActive" @click="toggleConfetti">Turn Off Confetti</button>
+        <button v-if="state.confettiActive" class="truncate" @click="toggleConfetti">Turn Off Confetti</button>
       </div>
     </div>
     <div class="lg:pt-8 pt-12">

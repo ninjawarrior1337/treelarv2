@@ -6,6 +6,7 @@
       <h2 class="text-2xl md:text-4xl" v-html="colorText('Prefers Vue over React')"></h2>
       <h2 class="text-2xl md:text-4xl" v-html="colorText('Trapped in Idol Hell')"></h2>
       <h2 class="text-2xl md:text-4xl" v-html="colorText('Kotlin and Golang are the future')"></h2>
+      <h2 class="text-2xl md:text-4xl mt-8 truncate" v-if="state.birthdayIdol" :style="{color: state.birthdayIdol.color}">Happy Birthday {{state.birthdayIdol.name}}!</h2>
     </div>
     <div class="mx-16 hidden lg:block">
       <!-- In prod I should stop this from loading on mobile devices -->
@@ -24,6 +25,7 @@
   import Logo3d from "@/components/logo3d.vue"
   import Logo2d from "@/components/logo2d.vue"
   import {reactive, defineComponent} from "@vue/composition-api";
+  import LoveLiveUtils from "../assets/lovelive"
   const colorTable = {
     "Vue": ["#41B883", "https://vuejs.org"],
     "React": ["#00d8ff", "https://reactjs.org/"],
@@ -34,10 +36,11 @@
   export default defineComponent({
     setup() {
       const state = reactive({
-        bruh: "fortnite"
+        bruh: "fortnite",
+        birthdayIdol: LoveLiveUtils.getBirthdayIdol()
       })
       return {
-        state
+        state,
       }
     },
     methods: {
