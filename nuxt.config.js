@@ -10,7 +10,7 @@ export default {
       { name: 'og:type', content: "website" },
       { name: 'og:url', content: "https://treelar.wtf" },
       { name: 'og:description', content: "Why not learn about some dude that makes bad (good) robots, epic games (Reverse Game), horribly inefficient code, can speak very broken japanese, and becomes a j-pop idol fan because some guy shows him a circle clicking game." },
-      { name: 'og:image', content: "https://treelar.wtf/logoassets/logo2020.png" }
+      { name: 'og:image', content: "https://treelar.wtf/logo/logo2020.png" }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
