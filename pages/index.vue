@@ -6,7 +6,9 @@
       <h2 class="text-2xl md:text-4xl" v-html="colorText('Prefers Vue over React')"></h2>
       <h2 class="text-2xl md:text-4xl" v-html="colorText('Trapped in Idol Hell')"></h2>
       <h2 class="text-2xl md:text-4xl" v-html="colorText('Kotlin and Golang are the future')"></h2>
-      <h2 class="text-2xl md:text-4xl mt-8 truncate" v-if="state.birthdayIdol" :style="{color: state.birthdayIdol.color}">Happy Birthday {{state.birthdayIdol.name}}!</h2>
+      <client-only>
+        <h2 class="text-2xl md:text-4xl mt-8 truncate" v-if="state.birthdayIdol" :style="{color: state.birthdayIdol.color}">Happy Birthday {{state.birthdayIdol.name}}!</h2>
+      </client-only>
     </div>
     <div class="mx-16 hidden lg:block">
       <!-- In prod I should stop this from loading on mobile devices -->
