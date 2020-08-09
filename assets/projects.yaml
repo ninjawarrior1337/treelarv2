@@ -15,7 +15,7 @@
     - GitHub=https://github.com/ReverseDevTeam/ReverseGame
 - title: Ongaku
   description: "An [openings.moe](https://openings.moe) inspired website with more up to date openings and endings"
-  img: /ongaku.svg
+  img: /ongaku.png
   links:
     - Ongaku=https://ongaku.treelar.cf
 - title: Mari
@@ -25,7 +25,7 @@
     - GitHub=https://github.com/ninjawarrior1337/mari
 - title: lovelive-hd-ur-go
   description: I wrote this just so I could get waifu2xed wallpapers of SIF cards by pressing a button on my phone. Actually one of my favorite projects as I've rewritten it in 3 different languages (Javascript, Java, and Go).
-  links: 
+  links:
     - go.dev=https://pkg.go.dev/github.com/ninjawarrior1337/lovelive-hd-ur-go?tab=overview
     - GitHub=https://github.com/ninjawarrior1337/lovelive-hd-ur-go
 - title: llwikiaapi
