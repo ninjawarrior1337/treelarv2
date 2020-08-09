@@ -13,6 +13,11 @@
   links:
     - Reverse=https://reverse.treelar.wtf
     - GitHub=https://github.com/ReverseDevTeam/ReverseGame
+- title: Ongaku
+  description: "An [openings.moe](https://openings.moe) inspired website with more up to date openings and endings"
+  img: /ongaku.svg
+  links:
+    - Ongaku=https://ongaku.treelar.cf
 - title: Mari
   description: A peer-to-peer file sharing service that utilizes WebRTC and uses React for the frontend. This is a replacement for reep.io.
   links:
