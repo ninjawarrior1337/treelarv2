@@ -1,9 +1,7 @@
 - title: Hanamaru
   description: >
    A Go-based **discord bot** with a bunch of Japanese-learning utilities and a spoonful of useless image editing features.
-   If you're wondering if thats the official logo: Yes and no. I designed it in 10 seconds (obviously) and I think it could be done better but I have nothing
-   better so this is it for now.
-  img: /hanamarugo.png
+  img: https://github.com/ninjawarrior1337/hanamaru-go/raw/master/logos/hanamaru.png?raw=true
   links:
     - go.dev=https://pkg.go.dev/github.com/ninjawarrior1337/hanamaru-go
     - GitHub=https://github.com/ninjawarrior1337/hanamaru-go
