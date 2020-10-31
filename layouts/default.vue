@@ -2,21 +2,32 @@
   <div>
     <confetti v-if="state.confettiActive" :color="state.confettiColor"></confetti>
     <div class="overflow-x-hidden text-white bg-gray-900">
-    <div class="fixed z-10 w-full flex items-center p-3 lg:p-5 bg-gray-900 border-b-4 border-blue-500 mb-8">
-      <div class="w-full flex-grow">
-        <nuxt-link :to="localePath('index')" class="text-white lg:text-lg text-xl mr-4" v-t="'Home'"></nuxt-link>
-        <nuxt-link :to="localePath('projects')" class="text-white lg:text-lg text-xl mr-4" v-t="'Projects'"></nuxt-link>
-        <nuxt-link :to="localePath('anime')" class="text-white lg:text-lg text-xl mr-4" v-t="'Anime'"></nuxt-link>
+
+    <div class="fixed z-10 w-full grid grid-rows-2 items-center bg-gray-900 mb-8">
+
+      <div class="w-full flex p-4">
+        <div class="w-full flex-grow">
+          <nuxt-link :to="localePath('index')" class="text-white lg:text-lg text-xl mr-4" v-t="'Home'"></nuxt-link>
+          <nuxt-link :to="localePath('projects')" class="text-white lg:text-lg text-xl mr-4" v-t="'Projects'"></nuxt-link>
+          <nuxt-link :to="localePath('anime')" class="text-white lg:text-lg text-xl mr-4" v-t="'Anime'"></nuxt-link>
+        </div>
+        <div>
+          <button v-if="state.confettiActive" class="truncate" @click="toggleConfetti">Turn Off Confetti</button>
+        </div>
       </div>
-      <div>
-        <button v-if="state.confettiActive" class="truncate" @click="toggleConfetti">Turn Off Confetti</button>
-      </div>
+      
+      <div class="treelar-gradient h-1 self-start"></div>
+
     </div>
+
     <div class="lg:pt-8 pt-12">
       <nuxt v-if="!state.eggActive"></nuxt>
       <egg v-else></egg>
     </div>
-    <footer class="p-4 text-center w-full border-t-4 border-blue-500 text-xl">
+    
+    <div class="treelar-gradient h-2"></div>
+    
+    <footer class="py-4 text-center w-full text-xl">
       <div>
         Made with
         <fa :icon="['fab', 'vuejs']" color="#41B883"></fa>
@@ -130,5 +141,8 @@ export default defineComponent({
 </i18n>
 
 <style>
-
+.treelar-gradient {
+  background: linear-gradient(55deg, #e4007f, #3399ff 40%);
+  @apply w-screen;
+}
 </style>
