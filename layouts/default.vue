@@ -3,7 +3,7 @@
     <confetti v-if="state.confettiActive" :color="state.confettiColor"></confetti>
     <div class="overflow-x-hidden text-white bg-gray-900">
 
-    <div class="fixed z-10 w-full grid grid-rows-2 items-center bg-gray-900 mb-8">
+    <div class="fixed z-10 w-full flex flex-col items-center bg-gray-900 mb-8">
 
       <div class="w-full flex p-4">
         <div class="w-full flex-grow">
