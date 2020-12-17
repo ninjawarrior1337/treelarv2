@@ -5,9 +5,9 @@
 
 <script lang="ts">
 import { defineComponent, reactive, ref } from "@vue/composition-api"
-import {Confetti as Confetti_T} from "../assets/confetti"
+import {Confetti as Confetti_T} from "../utils/confetti"
 if(process.browser) {
-    var Confetti = require("../assets/confetti").Confetti as typeof Confetti_T
+    var Confetti = require("../utils/confetti").Confetti as typeof Confetti_T
 }
 
 export default defineComponent({

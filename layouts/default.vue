@@ -1,6 +1,6 @@
 <template>
   <div>
-    <confetti v-if="state.confettiActive" :color="state.confettiColor"></confetti>
+    <confetti v-if="confettiActive" :color="confettiColor"></confetti>
     <div class="overflow-x-hidden text-white bg-gray-900">
 
     <div class="fixed z-10 w-full flex flex-col items-center bg-gray-900 mb-8">
@@ -12,16 +12,14 @@
           <nuxt-link :to="localePath('anime')" class="text-white lg:text-lg text-xl mr-4" v-t="'Anime'"></nuxt-link>
         </div>
         <div>
-          <button v-if="state.confettiActive" class="truncate" @click="toggleConfetti">Turn Off Confetti</button>
+          <button v-if="confettiActive" class="truncate" @click="showConfetti(false)">Turn Off Confetti</button>
         </div>
       </div>
-      
       <div class="treelar-gradient h-1 self-start"></div>
-
     </div>
 
     <div class="lg:pt-8 pt-12">
-      <nuxt v-if="!state.eggActive"></nuxt>
+      <nuxt v-if="!eggActive"></nuxt>
       <egg v-else></egg>
     </div>
     
@@ -32,7 +30,7 @@
         Made with
         <fa :icon="['fab', 'vuejs']" color="#41B883"></fa>
         and
-        <fa icon="egg" color="#e4007f" v-if="state.eggActive"></fa>
+        <fa icon="egg" color="#e4007f" v-if="eggActive"></fa>
         <fa icon="torii-gate" color="#e4007f" v-else-if="getRouteBaseName($route) && getRouteBaseName($route).includes('anime')" v-cloak></fa>
         <fa icon="brain" color="#e4007f" v-else-if="getRouteBaseName($route) && getRouteBaseName($route).includes('projects')" v-cloak></fa>
         <fa icon="heart" color="#e4007f" v-else v-cloak></fa>
@@ -53,72 +51,57 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from "@vue/composition-api";
+import { defineComponent, onMounted, onUnmounted, reactive, Ref, ref, watch, watchEffect } from "@vue/composition-api";
 import egg from "../components/egg.vue"
 import confetti from "../components/confetti.vue"
 import LoveLiveUtils from "../assets/lovelive"
-
-let eggCheckList = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a", "Enter"]
-let eggList: String[] = []
+import {useConfetti, useEasterEgg, useLoveLive} from "../utils"
 
 export default defineComponent({
   setup() {
-    const state = reactive({
-      eggActive: false,
-      confettiActive: false,
-      confettiColor: 0x3399ff
+    let topBtn = ref() as Ref<HTMLButtonElement>
+    let scrollButtonHandler = () => {
+      if(window.scrollY > 500) {
+        topBtn.value.classList.add("translate-x-0")
+        topBtn.value.classList.remove("translate-x-64")
+      } else {
+        topBtn.value.classList.add("translate-x-64")
+        topBtn.value.classList.remove("translate-x-0")
+      }
+    }
+    let scrollToTop = () => {
+      window.scroll({
+        top: 0,
+        behavior: "smooth"
+      })
+    }
+    onMounted(() => {
+      window.addEventListener("scroll", scrollButtonHandler)
+    })
+    onUnmounted(() => {
+      window.removeEventListener("scroll", scrollButtonHandler)
+    })
+    let {eggActive} = useEasterEgg()
+    let {showConfetti, confettiActive, confettiColor, setColor} = useConfetti()
+    let {birthdayIdol} = useLoveLive()
+    onMounted(() => {
+      if(birthdayIdol.value != null) {
+          showConfetti(true)
+          confettiColor.value = parseInt(birthdayIdol.value.color.substring(1), 16)
+      }
     })
     return {
-      state
+      topBtn,
+      scrollToTop,
+      eggActive,
+      confettiActive,
+      confettiColor,
+      showConfetti,
     }
   },
   components: {
     egg,
     confetti
-  },
-  methods: {
-    scrollToTop() {
-      window.scroll({
-        top: 0,
-        behavior: "smooth"
-      })
-    },
-    toggleConfetti() {
-      this.state.confettiActive = !this.state.confettiActive
-    }
-  },
-  mounted() {
-    //Setup Back to top button
-    let topBtn = this.$refs["topBtn"] as HTMLButtonElement
-    window.onscroll = () => {
-      if(window.scrollY > 500) {
-        topBtn.classList.add("translate-x-0")
-        topBtn.classList.remove("translate-x-64")
-      } else {
-        topBtn.classList.add("translate-x-64")
-        topBtn.classList.remove("translate-x-0")
-      }
-    }
-    //Setup easter egg
-    document.onkeydown = (e: KeyboardEvent) => {
-      eggList.push(e.key)
-      if(eggList.length >= eggCheckList.length) {
-        if (JSON.stringify(eggList) == JSON.stringify(eggCheckList)) {
-          this.state.eggActive = !this.state.eggActive
-        }
-        eggList.splice(0, 1)
-      }
-    }
-    //Setup LoveLiveConfetti
-    var birthdayIdol = LoveLiveUtils.getBirthdayIdol()
-    if(birthdayIdol != null) {
-      this.state.confettiActive = true
-      this.state.confettiColor = parseInt(birthdayIdol.color.substring(1), 16)
-    }
-  },
-  destroyed() {
-    window.onscroll = () => {}
-    document.onkeydown = (e) => {}
   },
 })
 </script>

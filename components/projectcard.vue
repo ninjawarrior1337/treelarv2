@@ -3,7 +3,7 @@
       <div class="flex flex-row mb-4">
         <div>
         <h1 class="text-4xl underline mb-4">{{$props.title}}</h1>
-            <p class="text-2xl" v-html="descriptionMd"></p>
+            <div class="text-2xl" v-html="descriptionMd"></div>
         </div>
         <div class="flex-grow"></div>
         <img :src="$props.img" class="w-32 h-full object-contain" :alt="$props.title+' logo'" v-if="$props.img">
@@ -43,10 +43,7 @@ export default defineComponent({
         return {
             descriptionMd
         }
-    },
-    methods: {
-        
-    },
+    }
 })
 </script>
 

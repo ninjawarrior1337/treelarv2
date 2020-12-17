@@ -1,7 +1,8 @@
-import {idols} from "./lovelivedata.json"
+import { ref } from "@vue/composition-api"
+import {idols} from "../assets/lovelivedata.json"
 import {Idol} from "../types/json-shim"
 
-export default class LoveLiveUtils {
+export class LoveLiveUtils {
     static TODAY = new Date(Date.now())
     private static getTZDayMonth(tz: string): [string, string] {
         var month = this.TODAY.toLocaleDateString("en-US", {
@@ -40,5 +41,12 @@ export default class LoveLiveUtils {
             }
         }
         return null
+    }
+}
+
+export function useLoveLive() {
+    let birthdayIdol = ref(LoveLiveUtils.getBirthdayIdol())
+    return {
+        birthdayIdol
     }
 }
