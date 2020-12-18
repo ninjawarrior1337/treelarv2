@@ -4,7 +4,6 @@
     <div class="overflow-x-hidden text-white bg-gray-900">
 
     <div class="fixed z-10 w-full flex flex-col items-center bg-gray-900 mb-8">
-
       <div class="w-full flex p-4">
         <div class="w-full flex-grow">
           <nuxt-link :to="localePath('index')" class="text-white lg:text-lg text-xl mr-4" v-t="'Home'"></nuxt-link>
@@ -54,7 +53,6 @@
 import { defineComponent, onMounted, onUnmounted, reactive, Ref, ref, watch, watchEffect } from "@vue/composition-api";
 import egg from "../components/egg.vue"
 import confetti from "../components/confetti.vue"
-import LoveLiveUtils from "../assets/lovelive"
 import {useConfetti, useEasterEgg, useLoveLive} from "../utils"
 
 export default defineComponent({
@@ -118,7 +116,7 @@ export default defineComponent({
     "Home": "ホーム",
     "Anime": "アニメ",
     "Projects": "プロジェクト",
-    "Back to Top": "トップに"
+    "Back to Top": "トップに飛んで"
   }
 }
 </i18n>

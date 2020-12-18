@@ -37,6 +37,7 @@
     "本": ["#ff0000", ""]
   }
   export default defineComponent({
+    name: "home",
     setup() {
       const {birthdayIdol} = useLoveLive()
       const colorText = (input: String): String => {

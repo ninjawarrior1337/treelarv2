@@ -6,9 +6,7 @@
 import {defineComponent} from "@vue/composition-api"
 export default defineComponent({
     setup() {
-        return {
-
-        }
+        return {}
     },
     name: "logo2d"
 })

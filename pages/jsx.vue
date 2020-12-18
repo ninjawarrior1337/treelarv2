@@ -1,3 +1,6 @@
+<template>
+</template>
+
 <script>
 import { defineComponent } from '@vue/composition-api'
 

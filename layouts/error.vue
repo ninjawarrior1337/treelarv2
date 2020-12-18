@@ -16,14 +16,17 @@
 <script lang="ts">
 import {defineComponent} from "@vue/composition-api"
 export default defineComponent({
+    setup() {
+        const openRick = () => {
+            window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
+        }
+        return {
+            openRick
+        }
+    },
     props: [
         "error"
     ],
-    methods: {
-        openRick() {
-            window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
-        }
-    }
 })
 </script>
 

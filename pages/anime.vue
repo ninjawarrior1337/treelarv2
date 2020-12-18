@@ -12,19 +12,19 @@
 </template>
 
 <script lang="ts">
-    import AnimeCard from "../components/animeCard.vue";
-    import AniData from "../assets/anime.yaml"
-    import {defineComponent, ref} from "@vue/composition-api";
-    export default defineComponent({
-        setup() {
-          const data = ref(AniData)
-          return {
-            data
-          }
-        },
-        name: "anime",
-        components: {AnimeCard}
-    })
+  import AnimeCard from "../components/animeCard.vue";
+  import AniData from "../assets/anime.yaml"
+  import {defineComponent, ref} from "@vue/composition-api";
+  export default defineComponent({
+      setup() {
+        const data = AniData
+        return {
+          data
+        }
+      },
+      name: "anime",
+      components: {AnimeCard}
+  })
 </script>
 
 <i18n>

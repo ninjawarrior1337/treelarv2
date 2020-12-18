@@ -1,5 +1,5 @@
 <template>
-  <canvas class="" :width="$props.width" :height="$props.height" ref="renderer">
+  <canvas :width="$props.width" :height="$props.height" ref="container">
 
   </canvas>
 </template>
@@ -10,7 +10,7 @@
   import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader.js"
   // import {OrbitControls} from "three/examples/jsm/controls/OrbitControls.js"
   import {Box3, Object3D, Vector3} from "three";
-  import { defineComponent, reactive, ref } from "@vue/composition-api";
+  import { defineComponent, onMounted, onUnmounted, reactive, Ref, ref } from "@vue/composition-api";
 
   export default defineComponent({
     setup() {
@@ -22,28 +22,25 @@
         renderer: {} as THREE.WebGLRenderer,
         animationFrameId: {} as number
       })
-      const renderer = ref(null)
-      return {
-        state
+      const container = ref() as Ref<HTMLCanvasElement>
+      const animate = () => {
+        state.animationFrameId = requestAnimationFrame(animate);
+        state.counter+=0.01
+        // controls.update()
+        state.logoObj.position.y = (Math.sin(state.counter) *1)
+        state.renderer.render(state.scene, state.camera );
       }
-    },
-    props:[
-      "width",
-      "height"
-    ],
-    methods: {
-      init() {
-        let container = this.$refs["renderer"] as HTMLCanvasElement
-        this.state.scene = new THREE.Scene()
+      const initLogo = () => {
+        state.scene = new THREE.Scene()
 
         //2nd value is the aspect ratio...
-        this.state.camera = new THREE.PerspectiveCamera(70, 1/1)
-        this.state.camera.position.z = 30;
-        this.state.camera.position.y = 10;
+        state.camera = new THREE.PerspectiveCamera(70, 1/1)
+        state.camera.position.z = 30;
+        state.camera.position.y = 10;
 
-        this.state.renderer = new THREE.WebGLRenderer({
+        state.renderer = new THREE.WebGLRenderer({
           alpha: true,
-          canvas: container,
+          canvas: container.value,
           antialias: true,
         })
 
@@ -53,7 +50,7 @@
         let loader = new GLTFLoader()
 
         let al = new THREE.AmbientLight(0xffffff, 1)
-        this.state.scene.add(al)
+        state.scene.add(al)
         // let sl = new THREE.SpotLight(0xffffff, 2)
         // sl.castShadow = true
         // scene.add(sl)
@@ -64,11 +61,11 @@
         //
         let dirLight = new THREE.DirectionalLight(0xffffff, 1)
         dirLight.position.set(-1, 1.75, 1)
-        this.state.scene.add(dirLight)
+        state.scene.add(dirLight)
 
         loader.load("logo2020.glb", (gltf) => {
-          this.state.logoObj = gltf.scene.children[1]
-          let logo = this.state.logoObj
+          state.logoObj = gltf.scene.children[1]
+          let logo = state.logoObj
           const box = new Box3().setFromObject(logo)
           const center = box.getCenter(new Vector3())
           logo.position.x += logo.position.x - center.x
@@ -84,26 +81,27 @@
               n.receiveShadow = true
             }
           })
-          this.state.scene.add(logo)
-          this.animate();
+          state.scene.add(logo)
+          animate();
         }, undefined, function (err) {
           console.error(err)
         })
-      },
-      animate() {
-        this.state.animationFrameId = requestAnimationFrame( this.animate );
-        this.state.counter+=0.01
-        // controls.update()
-        this.state.logoObj.position.y = (Math.sin(this.state.counter) *1)
-        this.state.renderer.render( this.state.scene, this.state.camera );
+      }
+      onMounted(() => {
+        initLogo()
+      })
+      onUnmounted(() => {
+        cancelAnimationFrame(state.animationFrameId)
+      })
+      return {
+        state,
+        container
       }
     },
-    destroyed() {
-      cancelAnimationFrame(this.state.animationFrameId)
-    },
-    mounted() {
-      this.init()
-    },
+    props:[
+      "width",
+      "height"
+    ],
     name: "logo3d"
   })
 </script>
