@@ -1,7 +1,7 @@
 <template>
   <div class="flex w-screen min-h-screen justify-center items-center flex-col-reverse lg:flex-row">
-    <div class="mx-16">
-      <h1 class="text-3xl md:text-6xl mb-4">Hi, I'm Treelar</h1>
+    <div class="mx-16 space-y-2">
+      <h1 class="text-3xl md:text-6xl mb-4 pb-4">Hi, I'm Treelar</h1>
       <h2 class="text-2xl md:text-4xl" v-html="colorText('日本語 勉強中')"></h2>
       <h2 class="text-2xl md:text-4xl" v-html="colorText('Prefers Vue over React')"></h2>
       <h2 class="text-2xl md:text-4xl" v-html="colorText('ラブライバー')"></h2>

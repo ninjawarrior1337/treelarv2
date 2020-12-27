@@ -5,7 +5,16 @@
 ** Default: https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js
 */
 module.exports = {
-  theme: {},
+  theme: {
+    extend: {
+      colors: {
+        muse: "#e4007f",
+        aqours: "#009fe8",
+        niji: "#fab920",
+        treelar: "#3399ff"
+      }
+    }
+  },
   variants: {},
   plugins: [
     require("tailwindcss-dark-mode")(),

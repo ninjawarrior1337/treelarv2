@@ -41,7 +41,8 @@ export default {
         "faHeart",
         "faBrain",
         "faToriiGate",
-        "faEgg"
+        "faEgg",
+        "faHome"
       ],
       brands: [
         "faVuejs",
