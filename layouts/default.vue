@@ -41,90 +41,12 @@
         <egg v-else></egg>
       </div>
 
-      <transition
-        enter-active-class="transform transition-all ease-in-out origin-bottom-right"
-        enter-class="scale-75 opacity-0"
-        enter-to-class="scale-100 opacity-100"
-        leave-active-class="transform transition-all ease-in-out origin-bottom-right"
-        leave-class="scale-100 opacity-100"
-        leave-to-class="scale-75 opacity-0"
-      >
-        <button
-          v-if="!navOpen"
-          @click="navOpen = !navOpen"
-          class="flex items-center fixed bottom-5 right-5 px-4 py-1.5 focus:outline-none bg-gradient-to-tr to-aqours from-muse rounded shadow text-center lg:hidden text-5xl border-2"
-        >
-          <span class="font-light">{{ navOpen ? "X" : "=" }}</span>
-        </button>
-
-        <div v-else @click="navOpen=false" class="focus:outline-none fixed lg:hidden bottom-5 right-5 grid grid-cols-3 grid-rows-3 gap-2 bg-gradient-to-tr via-treelar to-treelar from-muse p-2 rounded shadow">
-          <nuxt-link to="/" class="row-span-2 h-32 w-16 bg-black flex flex-col items-center justify-center">
-            <fa icon="home" size="2x"></fa>
-            <span>Home</span>
-          </nuxt-link>
-          <nuxt-link to="/projects" class="row-span-2 h-32 w-16 bg-black flex flex-col items-center justify-center">
-            <fa icon="brain" size="2x"></fa>
-            <span>Projects</span>
-          </nuxt-link>
-          <button class="row-span-1 bg-black text-3xl">X</button>
-          <nuxt-link to="/anime" class="row-span-2 h-32 w-16 bg-black flex flex-col items-center justify-center">
-            <fa icon="torii-gate" size="2x"></fa>
-            <span>Anime</span>
-          </nuxt-link>
-          <div class="col-span-2 bg-black"></div>
-        </div>
-      </transition>
+      <bottom-nav></bottom-nav>
 
       <div class="treelar-gradient h-1"></div>
 
-      <footer class="py-4 text-center w-full text-xl">
-        <div>
-          Made with
-          <fa :icon="['fab', 'vuejs']" color="#41B883"></fa>
-          and
-          <fa icon="egg" class="text-muse" v-if="eggActive"></fa>
-          <fa
-            icon="torii-gate"
-            class="text-muse"
-            v-else-if="
-              getRouteBaseName($route) &&
-              getRouteBaseName($route).includes('anime')
-            "
-            v-cloak
-          ></fa>
-          <fa
-            icon="brain"
-            class="text-muse"
-            v-else-if="
-              getRouteBaseName($route) &&
-              getRouteBaseName($route).includes('projects')
-            "
-            v-cloak
-          ></fa>
-          <fa icon="heart" class="text-muse" v-else v-cloak></fa>
-          by
-          <span class="text-treelar">Treelar</span>
-        </div>
-        <div class="mt-2">
-          <a
-            class="mx-2"
-            href="https://twitter.com/TYNROH"
-            target="_blank"
-            rel="noopener"
-            title="Twitter"
-            ><fa :icon="['fab', 'twitter']"></fa
-          ></a>
-          <a
-            class="mx-2"
-            href="https://github.com/ninjawarrior1337"
-            target="_blank"
-            rel="noopener"
-            title="Github"
-            ><fa :icon="['fab', 'github']"></fa
-          ></a>
-          <!-- <fa class="mx-2" :icon="['fab', 'discord']"></fa> -->
-        </div>
-      </footer>
+      <treelar-footer :eggActive="eggActive"></treelar-footer>
+      
       <button
         ref="topBtn"
         @click="scrollToTop"
@@ -148,12 +70,13 @@ import {
 } from "@vue/composition-api";
 import egg from "../components/egg.vue";
 import confetti from "../components/confetti.vue";
+import bottomNav from "../components/bottomNav.vue";
+import treelarFooter from "../components/footer.vue"
 import { useConfetti, useEasterEgg, useLoveLive } from "../utils";
 
 export default defineComponent({
   setup() {
     let topBtn = ref() as Ref<HTMLButtonElement>;
-    let navOpen = ref(false);
     let scrollButtonHandler = () => {
       if (window.scrollY > 500) {
         topBtn.value.classList.add("translate-x-0");
@@ -199,12 +122,13 @@ export default defineComponent({
       confettiActive,
       confettiColor,
       showConfetti,
-      navOpen,
     };
   },
   components: {
     egg,
     confetti,
+    bottomNav,
+    treelarFooter
   },
 });
 </script>
