@@ -1,24 +1,24 @@
 <template>
   <transition
-    enter-active-class="transform transition-all ease-in-out origin-bottom-right"
+    enter-active-class="transform transition-all ease-in-out"
     enter-class="scale-75 opacity-0"
     enter-to-class="scale-100 opacity-100"
-    leave-active-class="transform transition-all ease-in-out origin-bottom-right"
+    leave-active-class="transform transition-all ease-in-out"
     leave-class="scale-100 opacity-100"
     leave-to-class="scale-75 opacity-0"
   >
     <button
       v-if="!navOpen"
       @click="navOpen = !navOpen"
-      class="flex items-center fixed bottom-5 right-5 px-4 py-1.5 focus:outline-none bg-gradient-to-tr to-aqours from-muse rounded shadow text-center lg:hidden text-5xl border-2"
+      class="flex items-center fixed bottom-5 right-5 px-4 py-1.5 focus:outline-none bg-gradient-to-tr to-aqours from-muse rounded shadow text-center lg:hidden text-5xl border-2 origin-bottom-right"
     >
-      <span class="font-light">{{ navOpen ? "X" : "=" }}</span>
+      <span class="font-light">=</span>
     </button>
 
     <div
       v-else
       @click="navOpen = false"
-      class="focus:outline-none fixed lg:hidden bottom-5 right-5 grid grid-cols-3 grid-rows-3 gap-2 bg-gradient-to-tr via-treelar to-treelar from-muse p-2 rounded shadow"
+      class="focus:outline-none fixed lg:hidden bottom-5 right-5 grid grid-cols-3 grid-rows-3 gap-2 bg-gradient-to-tr via-treelar to-treelar from-muse p-2 rounded shadow origin-bottom-right"
     >
       <nuxt-link
         to="/"
