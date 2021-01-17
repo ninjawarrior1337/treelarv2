@@ -106,15 +106,18 @@ export default defineComponent({
       setColor,
     } = useConfetti();
     let { birthdayIdol } = useLoveLive();
-    onMounted(() => {
-      if (birthdayIdol.value != null) {
-        showConfetti(true);
-        confettiColor.value = parseInt(
-          birthdayIdol.value.color.substring(1),
-          16
-        );
+    watch(
+      birthdayIdol,
+      (v) => {
+        if (v != null) {
+          showConfetti(true);
+          confettiColor.value = parseInt(
+            v.color.substring(1),
+            16
+          );
+        }
       }
-    });
+    )
     return {
       topBtn,
       scrollToTop,

@@ -1,4 +1,4 @@
-import { onMounted, ref } from "@vue/composition-api"
+import { onMounted, Ref, ref } from "@vue/composition-api"
 import { Idol } from "../types/json-shim"
 
 export class LoveLiveUtils {
@@ -55,7 +55,7 @@ export class LoveLiveUtils {
 const LLUtils = new LoveLiveUtils()
 
 export function useLoveLive() {
-    let birthdayIdol = ref()
+    let birthdayIdol: Ref<Idol|null> = ref()
     onMounted(async () => {
         await LLUtils.setup()
         birthdayIdol.value = LLUtils.getBirthdayIdol()
