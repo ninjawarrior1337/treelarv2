@@ -74,6 +74,7 @@ export default {
   ],
   plugins: [
     "@/plugins/composition-api",
+    "@/plugins/enableDevTools"
   ],
   server: {
     host: "0.0.0.0",
