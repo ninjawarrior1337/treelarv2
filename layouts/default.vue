@@ -154,7 +154,7 @@ export default defineComponent({
 </i18n>
 
 <style>
-@layer components {
+@layer utilities {
   .treelar-gradient {
     @apply w-screen bg-gradient-to-r from-muse via-treelar to-treelar;
   }
