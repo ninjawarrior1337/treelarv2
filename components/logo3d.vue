@@ -10,7 +10,7 @@
   import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader.js"
   // import {OrbitControls} from "three/examples/jsm/controls/OrbitControls.js"
   import {Box3, Object3D, Vector3} from "three";
-  import { defineComponent, onMounted, onUnmounted, reactive, Ref, ref } from "@vue/composition-api";
+  import { defineComponent, onMounted, onUnmounted, reactive, Ref, ref } from "@nuxtjs/composition-api";
 
   export default defineComponent({
     setup() {

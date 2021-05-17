@@ -11,9 +11,9 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref} from "@vue/composition-api"
+import {defineComponent, ref} from "@nuxtjs/composition-api"
 import ProjectCard from "../components/projectcard.vue"
-import Projects from "../assets/projects.yaml"
+import Projects from "../assets/projects.json"
 
 export default defineComponent({
     setup() {

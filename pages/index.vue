@@ -3,9 +3,10 @@
     <div class="mx-16 space-y-2">
       <h1 class="text-3xl md:text-6xl mb-4 pb-4">Hi, I'm Treelar</h1>
       <h2 class="text-2xl md:text-4xl" v-html="colorText('日本語勉強中')"></h2>
-      <h2 class="text-2xl md:text-4xl" v-html="colorText('Prefers Vue over React')"></h2>
+      <h2 class="text-2xl md:text-4xl" v-html="colorText('Svelte/Vue over React')"></h2>
       <h2 class="text-2xl md:text-4xl" v-html="colorText('ラブライバー')"></h2>
-      <h2 class="text-2xl md:text-4xl" v-html="colorText('Kotlin and Golang are the future')"></h2>
+      <h2 class="text-2xl md:text-4xl" v-html="colorText('I use Arch btw')"></h2>
+      <h2 class="text-2xl md:text-4xl" v-html="colorText('ETH and BTC are real')"></h2>
       <client-only>
         <h2 class="text-2xl md:text-4xl mt-8 truncate" v-if="birthdayIdol" :style="{color: birthdayIdol.color}">Happy Birthday {{birthdayIdol.name}}!</h2>
       </client-only>
@@ -26,7 +27,7 @@
   import Vue from "vue"
   import Logo3d from "@/components/logo3d.vue"
   import Logo2d from "@/components/logo2d.vue"
-  import {reactive, defineComponent} from "@vue/composition-api"
+  import {reactive, defineComponent} from "@nuxtjs/composition-api"
   import { useLoveLive } from "~/utils"
   const colorTable = {
     "Vue": ["#41B883", "https://vuejs.org"],
@@ -34,6 +35,10 @@
     "ラブライバー": ["#e4007f", "https://love-live.fandom.com/wiki/Main_Page"],
     "Kotlin": ["#F88909", "https://kotlinlang.org/"],
     "Golang": ["#00ADD8", "https://golang.org/"],
+    "Svelte": ["#ff3e00", "https://svelte.dev"],
+    "ETH": ["#8c92b2", "https://ethereum.org/"],
+    "BTC": ["#f2a900", "https://bitcoin.org/"],
+    "Arch": ["#1793D1", "https://archlinux.org"],
     "本": ["#ff0000", ""]
   }
   export default defineComponent({

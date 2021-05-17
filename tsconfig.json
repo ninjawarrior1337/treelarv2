@@ -8,6 +8,7 @@
       "ESNext.AsyncIterable",
       "DOM"
     ],
+    "resolveJsonModule": true,
     "esModuleInterop": true,
     "allowJs": true,
     "sourceMap": true,
@@ -31,8 +32,5 @@
   },
   "include": [
     "./types/**/*"
-  ],
-  "exclude": [
-    "node_modules"
   ]
 }

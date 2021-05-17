@@ -1,12 +1,24 @@
-import { ref } from "@vue/composition-api"
+import { onMounted, ref, watch } from "@nuxtjs/composition-api"
+import { useLoveLive } from "./lovelive"
+
+const confettiActive = ref(false)
+const confettiColor = ref("#3399ff")
 
 export function useConfetti() {
-    let confettiActive = ref(false)
-    let confettiColor = ref(0x3399ff)
-    let setColor = (color: number) => {
+    const {birthdayIdol} = useLoveLive()
+    watch(
+        birthdayIdol,
+        (i) => {
+            if(i) {
+                setColor(i.color)
+                confettiActive.value = true
+            }
+        }
+    )
+    const setColor = (color: string) => {
         confettiColor.value = color
     }
-    let showConfetti = (v: boolean) => {
+    const showConfetti = (v: boolean) => {
         confettiActive.value = v
     }
 
@@ -15,5 +27,11 @@ export function useConfetti() {
         confettiActive,
         confettiColor,
         setColor
+    }
+}
+
+declare global {
+    interface Window {
+        toggleConfetti: () => void
     }
 }

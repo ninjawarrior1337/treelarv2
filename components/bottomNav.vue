@@ -34,21 +34,24 @@
         <fa icon="brain" size="2x"></fa>
         <span>Projects</span>
       </nuxt-link>
-      <button class="row-span-1 bg-black text-3xl">X</button>
+      <button class="row-span-1 bg-black text-3xl">
+        <img class="w-16 p-2 h-full" src="/logo/logo2020.svg">
+      </button>
       <div class="row-span-2 bg-black"></div>
-      <nuxt-link
-        to="/anime"
+      <a
+        target="_blank"
+        href="https://anilist.co/user/Treelar"
         class="col-span-2 bg-black grid grid-cols-2 justify-items-center items-center"
       >
         <fa icon="torii-gate" size="2x"></fa>
         <span>Anime</span>
-      </nuxt-link>
+      </a>
     </div>
   </transition>
 </template>
 
 <script>
-import { defineComponent, ref } from "@vue/composition-api";
+import { defineComponent, ref } from "@nuxtjs/composition-api";
 export default defineComponent({
   setup() {
     const navOpen = ref(false);

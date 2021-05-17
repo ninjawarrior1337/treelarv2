@@ -1,4 +1,4 @@
-import { onMounted, Ref, ref } from "@vue/composition-api"
+import { onMounted, Ref, ref } from "@nuxtjs/composition-api"
 import { Idol } from "../types/json-shim"
 
 export class LoveLiveUtils {

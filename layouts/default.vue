@@ -1,40 +1,11 @@
 <template>
   <div>
-    <confetti v-if="confettiActive" :color="confettiColor"></confetti>
+    <no-ssr>
+      <confetti></confetti>
+    </no-ssr>
     <div class="overflow-x-hidden text-white bg-gray-900">
-      <div
-        class="fixed hidden lg:block z-10 w-full flex-col items-center bg-gray-900 mb-8"
-      >
-        <div class="w-full flex p-4">
-          <div class="w-full flex-grow">
-            <nuxt-link
-              :to="localePath('index')"
-              class="text-white lg:text-lg text-xl mr-4"
-              v-t="'Home'"
-            ></nuxt-link>
-            <nuxt-link
-              :to="localePath('projects')"
-              class="text-white lg:text-lg text-xl mr-4"
-              v-t="'Projects'"
-            ></nuxt-link>
-            <nuxt-link
-              :to="localePath('anime')"
-              class="text-white lg:text-lg text-xl mr-4"
-              v-t="'Anime'"
-            ></nuxt-link>
-          </div>
-          <div>
-            <button
-              v-if="confettiActive"
-              class="truncate"
-              @click="showConfetti(false)"
-            >
-              Turn Off Confetti
-            </button>
-          </div>
-        </div>
-        <div class="treelar-gradient h-1 self-start"></div>
-      </div>
+      
+      <top-nav></top-nav>
 
       <div class="lg:pt-8">
         <nuxt v-if="!eggActive"></nuxt>
@@ -46,7 +17,7 @@
       <div class="treelar-gradient h-1"></div>
 
       <treelar-footer :eggActive="eggActive"></treelar-footer>
-      
+
       <button
         ref="topBtn"
         @click="scrollToTop"
@@ -67,10 +38,11 @@ import {
   ref,
   watch,
   watchEffect,
-} from "@vue/composition-api";
+} from "@nuxtjs/composition-api";
 import egg from "../components/egg.vue";
 import confetti from "../components/confetti.vue";
 import bottomNav from "../components/bottomNav.vue";
+import TopNav from "~/components/topNav.vue";
 import treelarFooter from "../components/footer.vue"
 import { useConfetti, useEasterEgg, useLoveLive } from "../utils";
 
@@ -85,7 +57,7 @@ export default defineComponent({
         topBtn.value.classList.add("translate-x-64");
         topBtn.value.classList.remove("translate-x-0");
       }
-    };
+    }
     let scrollToTop = () => {
       window.scroll({
         top: 0,
@@ -101,29 +73,12 @@ export default defineComponent({
     let { eggActive } = useEasterEgg();
     let {
       showConfetti,
-      confettiActive,
-      confettiColor,
-      setColor,
     } = useConfetti();
-    let { birthdayIdol } = useLoveLive();
-    watch(
-      birthdayIdol,
-      (v) => {
-        if (v != null) {
-          showConfetti(true);
-          confettiColor.value = parseInt(
-            v.color.substring(1),
-            16
-          );
-        }
-      }
-    )
+    
     return {
       topBtn,
       scrollToTop,
       eggActive,
-      confettiActive,
-      confettiColor,
       showConfetti,
     };
   },
@@ -131,6 +86,7 @@ export default defineComponent({
     egg,
     confetti,
     bottomNav,
+    TopNav,
     treelarFooter
   },
 });

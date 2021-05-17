@@ -1,4 +1,4 @@
-import { onMounted, onUnmounted, reactive, ref } from "@vue/composition-api";
+import { onMounted, onUnmounted, reactive, ref } from "@nuxtjs/composition-api";
 
 const eggCheckList = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a", "Enter"]
 

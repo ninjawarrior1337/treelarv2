@@ -1,4 +1,5 @@
 export default {
+  mode: "universal",
   head: {
     title: "Treelar",
     meta: [
@@ -17,22 +18,17 @@ export default {
     ]
   },
   buildModules: [
+    'nuxt-build-optimisations',
     'nuxt-windicss',
     "@nuxt/typescript-build",
-    "@nuxtjs/fontawesome"
+    "@nuxtjs/fontawesome",
+    "@nuxtjs/composition-api/module"
   ],
   build: {
     transpile: ["GLTFLoader.js", "OrbitControls.js"],
-    extend(config, {isDev, isClient}) {
-      config.module.rules.push({
-        test: /\.ya?ml$/,
-        type: 'json',
-        use: 'yaml-loader'
-      })
-      if(isDev) {
-        config.mode = "development"
-      }
-    }
+  },
+  buildOptimisations: {
+    profile: 'experimental'
   },
   fontawesome: {
     component: "fa",
@@ -73,8 +69,7 @@ export default {
     ]
   ],
   plugins: [
-    "@/plugins/composition-api",
-    "@/plugins/enableDevTools"
+    "@/plugins/enableDevTools",
   ],
   server: {
     host: "0.0.0.0",

@@ -1,50 +1,54 @@
 <template>
-    <canvas class="fixed z-20 pointer-events-none" ref="canvas">
-    </canvas>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, ref, watch, onUnmounted, Ref } from "@vue/composition-api"
-import {Confetti as Confetti_T} from "../utils/confetti"
-if(process.browser) {
-    var Confetti = require("../utils/confetti").Confetti as typeof Confetti_T
-}
-
+import { defineComponent, onMounted, onUnmounted, ref, watch } from "@nuxtjs/composition-api"
+import {useConfetti} from "../utils"
+import confetti from "canvas-confetti"
 export default defineComponent({
     setup(props) {
-        const confettiInstance = ref({} as Confetti_T)
-        const canvas = ref() as Ref<HTMLCanvasElement>
-        watch(
-            () => props.color,
-            (c) => {
-                confettiInstance.value.confettiColor = c
-            }
-        )
-        const resizeCallback = () => {
-            confettiInstance.value.restart()
+        const {confettiActive, confettiColor} = useConfetti()
+        const randomInRange = (min: number, max: number) => {
+            return Math.random() * (max - min) + min;
         }
-        onMounted(() => {
-            confettiInstance.value = new Confetti({
-                el: canvas.value,
-                limit: 100,
-                color: props.color
+        const animFrameID = ref(0)
+
+        const animate = () => {
+            confetti({
+                particleCount: 1,
+                startVelocity: 0,
+                ticks: 500,
+                origin: {
+                    x: Math.random(),
+                    y: Math.random() - 0.5
+                },
+                colors: [confettiColor.value],
+                shapes: ["square"],
+                gravity: randomInRange(0.4, 0.6),
+                scalar: randomInRange(0.4, 1),
+                drift: randomInRange(-0.4, 0.4)
             })
-            window.addEventListener("resize", resizeCallback)
-            confettiInstance.value.start()
-        })
+            animFrameID.value = requestAnimationFrame(animate)
+        }
+
+        watch(
+            confettiActive,
+            (cV, pV) => {
+                if(!cV) {
+                    cancelAnimationFrame(animFrameID.value)
+                    confetti.reset()
+                } else {
+                    animFrameID.value = requestAnimationFrame(animate)
+                }
+            }, {immediate: true}
+        )
+
         onUnmounted(() => {
-            window.removeEventListener("resize", resizeCallback)
-            confettiInstance.value.stop()
+            cancelAnimationFrame(animFrameID.value)
         })
         return {
-            confettiInstance,
-            canvas
-        }
-    },
-    props: {
-        "color": {
-            type: Number,
-            default: 0x3399ff
+            confettiActive,
+            confettiColor
         }
     }
 })
