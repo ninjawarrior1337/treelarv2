@@ -17,7 +17,7 @@
       ]
    },
    {
-      "title" "Boushi",
+      "title": "Boushi",
       "description": "A smartphone controlled 2D Array of LEDs on a graduation cap",
       "img": "https://github.com/ninjawarrior1337/boushi/raw/main/showcase/logo.png?raw=true",
       "links": [
