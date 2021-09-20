@@ -2,19 +2,10 @@
    {
       "title": "Hanamaru",
       "description": "A Go-based **discord bot** with a bunch of Japanese-learning utilities and a spoonful of useless image editing features.\n",
-      "img": "https://github.com/ninjawarrior1337/hanamaru-go/raw/master/logos/hanamaru.png?raw=true",
+      "img": "https://github.com/ninjawarrior1337/hanamaru-go/raw/main/logos/hanamaru.png?raw=true",
       "links": [
          "go.dev=https://pkg.go.dev/github.com/ninjawarrior1337/hanamaru-go",
          "GitHub=https://github.com/ninjawarrior1337/hanamaru-go"
-      ]
-   },
-   {
-      "title": "Reverse Game",
-      "description": "A Mario-like game that was supposed to be that you reset Mario levels but just ended up being a mario clone.",
-      "img": "/alejandro.png",
-      "links": [
-         "Reverse=https://reverse.treelar.cf",
-         "GitHub=https://github.com/ReverseDevTeam/ReverseGame"
       ]
    },
    {
@@ -26,12 +17,29 @@
       ]
    },
    {
+      "title" "Boushi",
+      "description": "A smartphone controlled 2D Array of LEDs on a graduation cap",
+      "img": "https://github.com/ninjawarrior1337/boushi/raw/main/showcase/logo.png?raw=true",
+      "links": [
+         "GitHub=https://github.com/ninjawarrior1337/boushi"
+      ]
+   }
+   {
       "title": "Mari",
       "img": "https://mari.treelar.cf/mari.png",
       "description": "A peer-to-peer file sharing service that utilizes WebRTC and uses React for the frontend. This is a replacement for reep.io.",
       "links": [
          "Mari=https://mari.treelar.cf",
          "GitHub=https://github.com/ninjawarrior1337/mari"
+      ]
+   },
+   {
+      "title": "Reverse Game",
+      "description": "A Mario-like game that was supposed to be that you reset Mario levels but just ended up being a mario clone.",
+      "img": "/alejandro.png",
+      "links": [
+         "Reverse=https://reverse.treelar.cf",
+         "GitHub=https://github.com/ReverseDevTeam/ReverseGame"
       ]
    },
    {
